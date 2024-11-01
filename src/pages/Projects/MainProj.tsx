@@ -40,8 +40,8 @@ const MainProj: React.FC = () => {
     },
     {
       image: portfolio,
-      git: "https://github.com/MdMassum/Portfolio",
-      live: "https://connectmmassum.vercel.app/",
+      git: "https://github.com/MdMassum/Marknox",
+      live: "https://marknox-portfolio-tawny.vercel.app/",
       name: "Portfolio",
       description: "My Personal Portfolio Website"
     },
