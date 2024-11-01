@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import ScrollUp from "./components/ScrollUp";
+import About from "./pages/About/About";
+import Contact from "./pages/Contact/Contact";
+import Home from "./pages/Home/Home";
+import Projects from "./pages/Projects/Projects";
+import Qualification from "./pages/Qualification/Qualification";
+import Skills from "./pages/Skills/Skills";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App: React.FC = () => {
+  const [themeMode, setThemeMode] = useState<"light" | "dark">("light");
+
+  const lightTheme = () => {
+    setThemeMode("light");
+  };
+
+  const darkTheme = () => {
+    setThemeMode("dark");
+  };
+
+  useEffect(() => {
+    const htmlElement = document.querySelector("html");
+    if (htmlElement) {
+      htmlElement.classList.remove("light", "dark");
+      htmlElement.classList.add(themeMode);
+    }
+  }, [themeMode]);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1 className='text-red-500'>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header darkTheme={darkTheme} lightTheme={lightTheme} themeMode={themeMode} />
+      <Home />
+      <About />
+      <Skills />
+      <Qualification />
+      <Projects />
+      <Contact />
+      <Footer />
+      <ScrollUp />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
