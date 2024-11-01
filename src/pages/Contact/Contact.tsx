@@ -4,14 +4,9 @@ import { FaWhatsapp, FaArrowRight } from "react-icons/fa6";
 import { CiLocationArrow1 } from "react-icons/ci";
 import emailjs from 'emailjs-com';
 
-interface ContactFormValues {
-  name: string;
-  email: string;
-  desc: string;
-}
 
 const Contact: React.FC = () => {
-    const [cred, setCred] = useState<ContactFormValues>({ name: "", email: "", desc: "" });
+    const [cred, setCred] = useState({ name: "", email: "", desc: "" });
     const [success, setSuccess] = useState<boolean>(false);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -27,7 +22,7 @@ const Contact: React.FC = () => {
         e.preventDefault();
         
         // Send email with emailjs
-        emailjs.send('service_l4lorhe', 'template_y12rie9', cred, 'ZL0Ji6kIghcyI2DtC')
+        emailjs.send('service_l4lorhe', 'template_y12rie9', cred as Record<string, unknown>, 'ZL0Ji6kIghcyI2DtC')
             .then((result) => {
                 console.log('Email sent successfully:', result.text);
                 setCred({ name: "", email: "", desc: "" }); // Reset the form
